@@ -1,3 +1,5 @@
 import { foo, barFromFoo } from 'foo';
-console.log(foo);
-console.log(barFromFoo);
+import { bar } from 'bar';
+console.log('foo:', foo);
+console.log('barFromFoo:', barFromFoo);
+console.log('bar:', bar);
