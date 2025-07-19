@@ -1,1 +1,2 @@
-console.log('Hello from index.js!');
+import { foo } from 'foo';
+console.log(foo);

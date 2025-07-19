@@ -1,0 +1,1 @@
+export const foo = 'this came from foo.js, but it was imported with the bare specifier "foo"';
