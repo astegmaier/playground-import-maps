@@ -5,9 +5,11 @@
     <title>Import Maps Playground</title>
     <script type="importmap">
       {
-        "imports": {
-          "foo": "./foo/foo.js",
-          "bar": "./bar/bar-version1.js"
+        "scopes": {
+          "http://localhost:8080/": {
+            "foo": "http://localhost:8080/foo/foo.js",
+            "bar": "http://localhost:8080/bar/bar-version1.js"
+          }
         }
       }
     </script>
