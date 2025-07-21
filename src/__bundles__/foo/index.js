@@ -1,2 +1,2 @@
-import { Version } from '@1js/m365-chat-types';
+import { Version } from 'bar';
 console.log(Version);
