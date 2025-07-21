@@ -6,10 +6,8 @@
     <script type="importmap">
       {
         "scopes": {
-          "./__bundles__/asdfasdf/": {
-          },
-          "./__bundles__/qwerqwer/": {
-          },
+          "./__bundles__/asdfasdf/": {},
+          "./__bundles__/qwerqwer/": {},
           "./__bundles__/foo/": {
             "bar": "./__bundles__/bar/version2/index.js"
           },
@@ -23,6 +21,7 @@
   </head>
   <body>
     <h1>Import Maps Playground</h1>
+    <p>This page demonstrates a bug in chromium implementations of import maps.</p>
     <p>If import maps are working as expected, the line below should read 'CORRECT - Version 2'</p>
     <pre id="output"></pre>
   </body>
