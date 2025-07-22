@@ -44,6 +44,10 @@ Surprisingly, the tweaks to the import map below (which at first glance look irr
 2. Renaming the `__bundles_` directory to something else, e.g., `packages`
 3. Running the same code [on github pages](https://astegmaier.github.io/playground-import-maps/), which is deployed to a subfolder.
 
+## Tweaks that do _not_ fix the issue
+
+Changing the order of the extra import map scopes (i.e. moving `"./__bundles__/asdfasdf/": {}` or `"./__bundles__/qwerqwer/": {}`) to other locations in the map does _not_ fix the issue, which suggests it may have a different root cause than [Issue 406357273: Is not used the most specific scope path when multiple scopes match the referrer URL in import map](https://issues.chromium.org/issues/406357273)
+
 ## Possible root cause
 
 I suspect that the problem is in the way that the [sort and normalize scope keys](https://html.spec.whatwg.org/multipage/webappapis.html#sorting-and-normalizing-scopes) spec is implemented. That spec notes that:
