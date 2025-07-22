@@ -16,7 +16,7 @@ The project contains the following import map:
 ```json
 {
     "scopes": {
-        "./__bundles__/asdfasdf/": {}, // <-- this is unused, and should be ignored, but it somehow causes things to blow up.
+        "./__bundles__/asdfasdf/": {}, // <-- this is unused, and should be ignored, but it somehow causes the "./__bundles__/foo/" scope to be ignored
         "./__bundles__/qwerqwer/": {}, // <-- same for this line
         "./__bundles__/foo/": {
         "bar": "./__bundles__/bar/version2/index.js"
