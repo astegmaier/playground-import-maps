@@ -46,12 +46,10 @@ Surprisingly, the tweaks to the import map below (which at first glance look irr
 
 ## Possible root cause
 
-I suspect that the problem is in the way that the [sort and normalize scope keys](https://html.spec.whatwg.org/multipage/webappapis.html#sorting-and-normalizing-scopes) spec is implmented. That spec notes that:
+I suspect that the problem is in the way that the [sort and normalize scope keys](https://html.spec.whatwg.org/multipage/webappapis.html#sorting-and-normalizing-scopes) spec is implemented. That spec notes that:
 
 > In the above two algorithms, sorting keys and scopes in descending order has the effect of putting "foo/bar/" before "foo/". This in turn gives "foo/bar/" a higher priority than "foo/" during module specifier resolution.
 
-In other words the sorting algorithm is what determines scope priority, which is not correct in this case.
+In other words, the sorting algorithm is what determines scope priority, which is not correct in this case.
 
 In looks like chromium's implementation of this algorithm is in [/third_party/blink/renderer/core/script/import_map.cc:242-323](https://chromium.googlesource.com/chromium/src/+blame/refs/heads/main/third_party/blink/renderer/core/script/import_map.cc#242) (i.e. everything that builds the `normalized_scopes_map`)
-
-
