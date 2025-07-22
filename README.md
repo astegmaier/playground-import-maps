@@ -4,7 +4,7 @@ This repository demonstrates a bug in import maps in Chromium-based browsers. It
 
 ## Repro Steps
 
-1. Clone the repository
+1. Clone this repository by running `git clone https://github.com/astegmaier/playground-import-maps.git`
 2. Run `npx http-server .`
 3. Visit `http://localhost:8080` in a Chromium-based browser (e.g., Chrome, Edge) - you'll see `INCORRECT - Version 1`
 4. Visit `http://localhost:8080` in a non-Chromium browser (e.g., Firefox) - you'll see `CORRECT - Version 2`
