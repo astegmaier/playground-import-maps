@@ -32,6 +32,8 @@ The expected behavior is that when `bar` is imported from `foo`, we get version 
 
 ## Tweaks that fix the issue
 
+Surprisingly, the tweaks to the import map below (which at first glance look irrelevant to the semantic meaning of the `importmap`) will make the problem go away. Although they would work to fix this simplified example, in the real application, the importmaps are generated automatically by [cloudpack](https://github.com/microsoft/cloudpack), and the lines analogous to `./__bundles__/asdfasdf/` are essential to the functionality of the application.
+
 1. Removing _either_ one of these lines from the import map:
 
     ```js
@@ -41,3 +43,15 @@ The expected behavior is that when `bar` is imported from `foo`, we get version 
 
 2. Renaming the `__bundles_` directory to something else, e.g., `packages`
 3. Running the same code [on github pages](https://astegmaier.github.io/playground-import-maps/), which is deployed to a subfolder.
+
+## Possible root cause
+
+I suspect that the problem is in the way that the [sort and normalize scope keys](https://html.spec.whatwg.org/multipage/webappapis.html#sorting-and-normalizing-scopes) spec is implmented. That spec notes that:
+
+> In the above two algorithms, sorting keys and scopes in descending order has the effect of putting "foo/bar/" before "foo/". This in turn gives "foo/bar/" a higher priority than "foo/" during module specifier resolution.
+
+In other words the sorting algorithm is what determines scope priority, which is not correct in this case.
+
+In looks like chromium's implementation of this algorithm is in [/third_party/blink/renderer/core/script/import_map.cc:242-323](https://chromium.googlesource.com/chromium/src/+blame/refs/heads/main/third_party/blink/renderer/core/script/import_map.cc#242) (i.e. everything that builds the `normalized_scopes_map`)
+
+
